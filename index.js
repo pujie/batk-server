@@ -11,6 +11,7 @@ app.engine("html",require("ejs").renderFile);
 app.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS")
     next();
 });
 app.use(bodyParser.json());
@@ -18,6 +19,13 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.get('/getproducts',(req,res) => {
     console.log("Query",query.getProducts());
     con.getdata(query.getProducts(),result => {
+        console.log("Result",result);
+        res.send(result);
+    })
+})
+app.post('/updateproduct',(req,res) => {
+    console.log("Query",query.updateProduct(req.body));
+    con.getdata(query.updateProduct(req.body),result => {
         console.log("Result",result);
         res.send(result);
     })
