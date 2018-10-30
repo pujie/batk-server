@@ -23,6 +23,13 @@ app.get('/getproducts',(req,res) => {
         res.send(result);
     })
 })
+app.post('/insertproduct',(req,res) => {
+    console.log("Query",query.insertProduct(req.body));
+    con.getdata(query.insertProduct(req.body),result => {
+        console.log("Result",result);
+        res.send(result);
+    })
+})
 app.post('/updateproduct',(req,res) => {
     console.log("Query",query.updateProduct(req.body));
     con.getdata(query.updateProduct(req.body),result => {
